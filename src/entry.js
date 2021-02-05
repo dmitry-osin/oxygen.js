@@ -1,1 +1,1 @@
-const fs = require('fs')
+const { downloadFile } = require('./utils/net-utils')
