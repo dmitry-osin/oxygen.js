@@ -12,7 +12,7 @@ function readFiles (path) {
 }
 
 /**
- * @param path
+ * @param path {string}
  * @return {Promise<string[]>}
  */
 async function readFilesAsync (path) {
@@ -21,7 +21,7 @@ async function readFilesAsync (path) {
 }
 
 /**
- * @param path
+ * @param path {string}
  * @return {Promise<string>}
  */
 async function readAllLinesAsync (path) {
@@ -31,7 +31,7 @@ async function readAllLinesAsync (path) {
 }
 
 /**
- * @param path
+ * @param path {string}
  * @return {string}
  */
 function readAllLines(path) {

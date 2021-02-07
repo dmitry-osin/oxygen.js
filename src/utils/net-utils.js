@@ -1,26 +1,31 @@
-const https = require('https')
-const http = require('http')
+const {IncomingMessage} = require('http')
 const util = require('util')
+const {throwIfNullOrWhiteSpace} = require('../utils/string-utils')
 const fs = require('fs')
 
 /**
- * @param url
- * @param path
+ * @param url {string}
+ * @param path {string}
  */
-function downloadFile (url, path) {
-  /**
-   * @type {Promise<{}>}
-   */
-  let getP
-  if (url.startsWith('https')) {
-    getP = https.get
-  } else {
-    getP = http.get
-  }
+function downloadFile(url, path) {
+  throwIfNullOrWhiteSpace(url)
+  throwIfNullOrWhiteSpace(path)
   const file = fs.createWriteStream(path)
-  getP(url, function (response) {
+  /**
+   * @type {function(*): *}
+   * @param response {IncomingMessage}
+   */
+  const cb = function (response) {
+    console.log(response)
     response.pipe(file)
-  })
+  }
+  if (url.startsWith('https')) {
+    const {get} = require('https')
+    get(url, cb)
+  } else {
+    const {get} = require('http')
+    get(url, cb)
+  }
 }
 
 module.exports = {

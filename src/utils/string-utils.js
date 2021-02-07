@@ -1,27 +1,35 @@
+/**
+ * @param source {string}
+ * @return {boolean}
+ */
 function isNullOrWhiteSpace (source) {
   return !source || source.length === 0 || isBlank(source)
 }
 
-function isEmpty(str) {
-  return (!str || 0 === str.length);
+/**
+ * @param source {string}
+ * @return {boolean}
+ */
+function isEmpty(source) {
+  return (!source || 0 === source.length);
 }
 
+/**
+ * @param source {string}
+ * @return {boolean}
+ */
 function isBlank(source) {
   return (!source || /^\s*$/.test(source));
 }
 
+/**
+ * @throws error {Error} - if param is null, empty or whitespace
+ * @param source {string}
+ */
 function throwIfNullOrWhiteSpace (source) {
   if (isNullOrWhiteSpace(source)) {
     throw new Error('parameter cannot be null, empty or whitespace')
   }
-}
-
-String.prototype.isEmpty = function () {
-  return (this.length === 0 || !this.trim())
-}
-
-String.prototype.isNotEmpty = function () {
-  return !this.isEmpty()
 }
 
 module.exports = {
