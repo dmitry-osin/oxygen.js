@@ -1,6 +1,7 @@
 const { extract } = require('../utils/archive-utils')
 const { throwIfNullOrWhiteSpace } = require('../utils/string-utils')
 const { promisify } = require('util')
+const decompress = require('decompress')
 
 jest.mock('../utils/string-utils')
 jest.mock('util')
@@ -17,6 +18,6 @@ test('extract archive if path and output provided', () => {
 
   expect(throwIfNullOrWhiteSpace).toBeCalledWith(inputFile)
   expect(throwIfNullOrWhiteSpace).toBeCalledWith('.')
-  expect(promisify).toBeCalledWith(expect.anything())
+  expect(promisify).toBeCalledWith(decompress)
   expect(promisifyMock).toBeCalledWith(inputFile, '.')
 })
