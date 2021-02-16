@@ -7,12 +7,13 @@
     "start:ts": "nodemon --exec babel-node src/entry.ts",
     "start:js": "nodemon --exec babel-node src/entry.js",
     "type-check": "tsc --noEmit",
-    "type-check:watch": "npm run type-check -- --watch",
-    "build": "npm run build:types && npm run build:js",
+    "type-check:watch": "npm-run-all type-check -- --watch",
+    "build": "npm-run-all clean build:types build:js",
     "build:types": "tsc --emitDeclarationOnly",
     "build:js": "babel src --out-dir lib --extensions \".ts,.tsx\" --source-maps inline",
-    "bundle": "webpack",
-    "test": "jest"
+    "bundle": "npm-run-all clean webpack",
+    "test": "jest",
+    "clean": "rimraf dist"
   },
   "devDependencies": {
     "@babel/cli": "^7.12.13",
@@ -26,6 +27,8 @@
     "clean-webpack-plugin": "^3.0.0",
     "jest": "^26.6.3",
     "nodemon": "^2.0.7",
+    "npm-run-all": "^4.1.5",
+    "rifraf": "^2.0.3",
     "typescript": "^4.1.3",
     "webpack": "^5.20.2",
     "webpack-cli": "^4.5.0"
