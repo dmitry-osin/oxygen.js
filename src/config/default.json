@@ -1,0 +1,8 @@
+{
+  "server": {
+    "host": "localhost",
+    "port": 3000,
+    "salt": "fe2bf0f7-e980-4b16-979e-fcd8e985d074",
+    "sessionSecret": "38e83745-811f-4e4d-a871-bfc65f835440"
+  }
+}

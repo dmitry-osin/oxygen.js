@@ -1,0 +1,24 @@
+mixin categoriesWidget(categories)
+    ul.list-group.list-group-numbered
+        each category in categories
+            li.list-group-item.d-flex.justify-content-between.align-items-start
+                div.ms-2.me-auto
+                        a.nav-link(href="/category/" + category.url)= category.name
+                span.badge.text-bg-primary.rounded-pill= category.posts.length
+
+mixin tagsWidget(tags)
+    ul.list-group.list-group-numbered
+        each tag in tags
+            li.list-group-item.d-flex.justify-content-between.align-items-start
+                div.ms-2.me-auto
+                    a.nav-link(href="/tag/" + tag.url)= tag.name
+                span.badge.text-bg-primary.rounded-pill= tag.posts.length
+
+
+mixin latestPosts(posts)
+    ul.list-group.list-group-numbered
+        each post in posts
+            li.list-group-item.d-flex.justify-content-between.align-items-start
+                div.ms-2.me-auto
+                    a.nav-link(href="/post/" + post.url)= post.name
+

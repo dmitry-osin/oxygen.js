@@ -1,0 +1,11 @@
+.page {
+    min-height: 86vh;
+}
+
+.sidebar {
+    min-height: 85vh;
+}
+
+.content {
+    min-height: 85vh;
+}
