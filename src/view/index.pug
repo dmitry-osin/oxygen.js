@@ -6,10 +6,11 @@ body
     div.content.page
         div.container-fluid
             div.row
-                div.col-2
-                div.col-2.sidebar#sidebar
-                div.col-6.content#content
-                div.col-2
+                div.col-3.sidebar#sidebar
+                    include include/_sidebar
+                div.col-9.content#content
+                    div.container-fluid.my-3
+                        include include/_post
 
     include include/_footer
 
