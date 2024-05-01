@@ -51,5 +51,6 @@ module.exports = {
     User,
     Post,
     Tag,
-    Category
+    Category,
+    mongoose
 }

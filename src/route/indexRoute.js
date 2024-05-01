@@ -9,8 +9,8 @@ router.get('/about', async function (req, res, next) {
     res.render('about.pug')
 })
 
-router.get('/contact', async function (req, res, next) {
-    res.render('contact.pug')
+router.get('/contacts', async function (req, res, next) {
+    res.render('contacts.pug')
 })
 
 router.get('/login', async function (req, res, next) {

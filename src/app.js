@@ -27,7 +27,10 @@ app.set("views engine", "pug")
 app.set('views', path.join(__dirname, 'view'))
 
 app.use(require("./route/indexRoute"))
+app.use(require("./route/adminRoute"))
+
+require('./db').initializeDatabase().then().catch()
 
 app.listen(port, () => {
-    console.log(`Server is running at ${port}`);
+    console.log(`Server is running at ${port}`)
 })

@@ -1,19 +1,19 @@
 - var pageTitle = 'Blog'
 
-include partial/_head
+include _partial/_head
 
 body
-    include partial/_navbar
+    include _partial/_navbar
 
     div.content.page
         div.container-fluid
             div.row
                 div.col-3.sidebar#sidebar
-                    include partial/_sidebar
+                    include _partial/_sidebar
                 div.col-9.content#content
                     div.container-fluid.my-3
-                        include partial/_post
+                        include _partial/_post
 
-    include partial/_footer
+    include _partial/_footer
 
-    include partial/_scripts
+    include _partial/_scripts
