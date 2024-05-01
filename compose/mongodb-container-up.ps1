@@ -1,0 +1,1 @@
+podman compose --file mongodb-compose.yaml up --detach

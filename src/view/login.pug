@@ -1,0 +1,29 @@
+- var pageTitle = 'Login'
+
+include _partial/_head
+
+body
+    include _partial/_navbar
+
+
+    div.container.mt-5
+        div.row
+            div.col-3
+            div.col-6
+                div.card
+                    form.m-4
+                        div.mb-3
+                            label.form-label(for='email') Email
+                            input.form-control#email(type='email' aria-describedby=emailHelp)
+                            div.form-text#emailHelp We'll never share your email with anyone else
+                        div.mb-3
+                            label.form-label(for='password') Password
+                            input.form-control#password(type='password')
+                        div.mb-3.form-check
+                            input.form-check-input#checkMe
+                            label.form-check-label(for=checkMe) Check me out
+                        button.btn.btn-primary(type='submit') Login
+            div.col-3
+
+
+    include _partial/_scripts
