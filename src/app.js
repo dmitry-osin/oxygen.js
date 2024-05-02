@@ -8,7 +8,7 @@ const path = require("path")
 const config = require('config')
 
 const passport = require("passport")
-const port = process.env.PORT | config.get("server.port") | 3000
+const port = process.env.PORT || config.get("server.port") || 3000
 
 app.use(express.static(path.join(__dirname, "public")))
 
@@ -26,8 +26,8 @@ app.use(passport.authenticate('session'))
 app.set("views engine", "pug")
 app.set('views', path.join(__dirname, 'view'))
 
-app.use(require("./route/indexRoute"))
-app.use(require("./route/adminRoute"))
+const router = require('./controller');
+app.use('', router)
 
 require('./db').initializeDatabase().then().catch()
 

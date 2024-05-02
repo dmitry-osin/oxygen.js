@@ -3,28 +3,28 @@ class UserRepository {
         this.User = mongoose.model('User')
     }
 
-    create(user) {
-        return this.User.create(user)
+    async create(user) {
+        return await this.User.create(user)
     }
 
-    findByEmail(email) {
-        return this.User.findOne({email})
+    async findByEmail(email) {
+        return await this.User.findOne({email}).exec()
     }
 
-    findById(id) {
-        return this.User.findById(id)
+    async findById(id) {
+        return await this.User.findById(id).exec()
     }
 
-    update(id, user) {
-        return this.User.findByIdAndUpdate(id, user)
+    async update(id, user) {
+        return await this.User.findByIdAndUpdate(id, user).exec()
     }
 
-    delete(id) {
-        return this.User.findByIdAndDelete(id)
+    async delete(id) {
+        return await this.User.findByIdAndDelete(id).exec()
     }
 
-    findAll() {
-        return this.User.find()
+    async findAll() {
+        return await this.User.find().exec()
     }
 }
 

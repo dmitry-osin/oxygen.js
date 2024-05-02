@@ -3,44 +3,44 @@ class PostRepository {
         this.Post = mongoose.model('Post')
     }
 
-    create(post) {
-        return this.Post.create(post)
+    async create(post) {
+        return await this.Post.create(post)
     }
 
-    findAll() {
-        return this.Post.find()
+    async findAll() {
+        return await this.Post.find().exec()
     }
 
-    findById(id) {
-        return this.Post.findById(id)
+    async findById(id) {
+        return await this.Post.findById(id).exec()
     }
 
-    update(id, post) {
-        return this.Post.findByIdAndUpdate(id, post)
+    async update(id, post) {
+        return await this.Post.findByIdAndUpdate(id, post).exec()
     }
 
-    delete(id) {
-        return this.Post.findByIdAndDelete(id)
+    async delete(id) {
+        return await this.Post.findByIdAndDelete(id).exec()
     }
 
-    findByAuthor(id) {
-        return this.Post.find({author: id})
+    async findByAuthor(id) {
+        return await this.Post.find({author: id}).exec()
     }
 
-    findByTag(id) {
-        return this.Post.find({tags: id})
+    async findByTag(id) {
+        return await this.Post.find({tags: id}).exec()
     }
 
-    findByCategory(id) {
-        return this.Post.find({categories: id})
+    async findByCategory(id) {
+        return await this.Post.find({categories: id}).exec()
     }
 
-    findByTitle(title) {
-        return this.Post.findOne({title})
+    async findByTitle(title) {
+        return await this.Post.findOne({title}).exec()
     }
 
-    findByUrl(url) {
-        return this.Post.findOne({url})
+    async findByUrl(url) {
+        return await this.Post.findOne({url}).exec()
     }
 }
 
