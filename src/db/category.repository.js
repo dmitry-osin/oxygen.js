@@ -3,24 +3,24 @@ class CategoryRepository {
         this.Category = mongoose.model('Category')
     }
 
-    create(category) {
-        return this.Category.create(category)
+    async create(category) {
+        return await this.Category.create(category)
     }
 
-    findAll() {
-        return this.Category.find()
+    async findAll() {
+        return await this.Category.find().exec()
     }
 
-    findById(id) {
-        return this.Category.findById(id)
+    async findById(id) {
+        return await this.Category.findById(id).exec()
     }
 
-    update(id, category) {
-        return this.Category.findByIdAndUpdate(id, category)
+    async update(id, category) {
+        return await this.Category.findByIdAndUpdate(id, category).exec()
     }
 
-    delete(id) {
-        return this.Category.findByIdAndDelete(id)
+    async delete(id) {
+        return await this.Category.findByIdAndDelete(id).exec()
     }
 }
 

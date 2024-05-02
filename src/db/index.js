@@ -1,4 +1,4 @@
-const {mongoose} = require('./db')
+const {mongoose} = require('./schema')
 const UserRepository = require('./user.repository')
 const PostRepository = require('./post.repository')
 const TagRepository = require('./tag.repository')
@@ -17,6 +17,9 @@ mongoose.connect(config.get('db.host'))
 const initUser = config.get('application.user')
 
 async function initializeDatabase() {
+    const existsUser = await userRepository.findByEmail("admin@localhost");
+    if (existsUser) return
+
     const user = await userRepository.create({
         name: initUser.name,
         email: initUser.email,
@@ -33,14 +36,14 @@ async function initializeDatabase() {
         content: 'Основы JavaScript',
         url: 'javascript',
         author: user._id,
-        description: 'Основы JavaScript',
-        tags: ['javascript', 'css', 'html'],
-        categories: ['javascript', 'css', 'html']
+        description: 'Основы JavaScript'
     })
 
-    await categoryRepository.create({name: 'JavaScript', description: 'Основы JavaScript', url: 'javascript', posts: [post._id]})
+    const category = await categoryRepository.create({name: 'JavaScript', description: 'Основы JavaScript', url: 'javascript', posts: [post._id]})
 
-    await tagRepository.create({name: 'C#', description: 'Основы C#', url: 'c#', posts: [post._id]})
+    const tag = await tagRepository.create({name: 'C#', description: 'Основы C#', url: 'c#', posts: [post._id]})
+
+    await postRepository.update(post._id, {$set: {categories: [category._id], tags: [tag._id]}})
 }
 
 module.exports = {

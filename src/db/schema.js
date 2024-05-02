@@ -23,8 +23,8 @@ const Post = mongoose.model('Post', {
     deletedAt: Date,
     author: {type: mongoose.Schema.Types.ObjectId, ref: 'User'},
     description: String,
-    tags: [{type: String, required: true, unique: true}],
-    categories: [{type: String, required: true, unique: true}]
+    tags: [{type: mongoose.Schema.Types.ObjectId, ref: 'Tag'}],
+    categories: [{type: mongoose.Schema.Types.ObjectId, ref: 'Category'}]
 })
 
 const Tag = mongoose.model('Tag', {

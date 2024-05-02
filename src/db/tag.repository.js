@@ -3,24 +3,24 @@ class TagRepository {
         this.Tag = mongoose.model('Tag')
     }
 
-    create(tag) {
-        return this.Tag.create(tag)
+    async create(tag) {
+        return await this.Tag.create(tag)
     }
 
-    findAll() {
-        return this.Tag.find()
+    async findAll() {
+        return await this.Tag.find().exec()
     }
 
-    findById(id) {
-        return this.Tag.findById(id)
+    async findById(id) {
+        return await this.Tag.findById(id).exec()
     }
 
-    update(id, tag) {
-        return this.Tag.findByIdAndUpdate(id, tag)
+    async update(id, tag) {
+        return await this.Tag.findByIdAndUpdate(id, tag).exec()
     }
 
-    delete(id) {
-        return this.Tag.findByIdAndDelete(id)
+    async delete(id) {
+        return await this.Tag.findByIdAndDelete(id).exec()
     }
 }
 
