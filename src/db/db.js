@@ -1,11 +1,11 @@
 const mongoose = require("mongoose")
 
 const User = mongoose.model('User', {
-    name: String,
-    email: String,
-    password: String,
+    name: {type: String, required: true, unique: true},
+    email: {type: String, required: true, unique: true},
+    password: {type: String, required: true, length: 128},
     salt: String,
-    role: String,
+    role: [{type: String, enum: ['admin', 'user']}],
     token: String,
     refreshToken: String,
     refreshTokenExpiry: Date,
@@ -15,22 +15,22 @@ const User = mongoose.model('User', {
 })
 
 const Post = mongoose.model('Post', {
-    title: String,
+    title: {type: String, required: true, unique: true},
     content: String,
-    url: String,
+    url: {type: String, required: true, unique: true},
     createdAt: Date,
     updatedAt: Date,
     deletedAt: Date,
     author: {type: mongoose.Schema.Types.ObjectId, ref: 'User'},
     description: String,
-    tags: [String],
-    categories: [String]
+    tags: [{type: String, required: true, unique: true}],
+    categories: [{type: String, required: true, unique: true}]
 })
 
 const Tag = mongoose.model('Tag', {
-    name: String,
-    description: String,
-    url: String,
+    name: {type: String, required: true, unique: true},
+    description: {type: String, length: 128},
+    url: {type: String, required: true, unique: true},
     createdAt: Date,
     updatedAt: Date,
     deletedAt: Date,
@@ -38,9 +38,9 @@ const Tag = mongoose.model('Tag', {
 })
 
 const Category = mongoose.model('Category', {
-    name: String,
-    description: String,
-    url: String,
+    name: {type: String, required: true, unique: true},
+    description: {type: String, length: 128},
+    url: {type: String, required: true, unique: true},
     createdAt: Date,
     updatedAt: Date,
     deletedAt: Date,
