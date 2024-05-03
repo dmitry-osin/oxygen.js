@@ -13,6 +13,6 @@ use oxygen
 db.createUser({
     user: "root",
     pwd: "root",
-    roles: ["dbOwner"]
+    roles: ["userAdminAnyDatabase", "readWriteAnyDatabase"]
 })
 EOF

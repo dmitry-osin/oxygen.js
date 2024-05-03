@@ -3,6 +3,7 @@ const UserRepository = require('./user.repository')
 const PostRepository = require('./post.repository')
 const TagRepository = require('./tag.repository')
 const CategoryRepository = require('./category.repository')
+const bcrypt = require('bcryptjs')
 
 const userRepository = new UserRepository(mongoose)
 const postRepository = new PostRepository(mongoose)
@@ -17,13 +18,13 @@ mongoose.connect(config.get('db.host'))
 const initUser = config.get('application.user')
 
 async function initializeDatabase() {
-    const existsUser = await userRepository.findByEmail("admin@localhost");
+    const existsUser = await userRepository.findByEmail('admin@localhost');
     if (existsUser) return
 
     const user = await userRepository.create({
         name: initUser.name,
         email: initUser.email,
-        password: initUser.password,
+        password: await bcrypt.hash(initUser.password, 7),
         salt: initUser.salt,
         role: initUser.role,
         token: 'token',

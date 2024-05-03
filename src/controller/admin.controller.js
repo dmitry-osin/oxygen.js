@@ -1,7 +1,11 @@
 class AdminController {
 
     index(req, res) {
-        res.render('areas/admin/index.pug')
+        if (req.isAuthenticated()) {
+            res.render('areas/admin/index.pug')
+        } else {
+            res.redirect('/login')
+        }
     }
 
 }

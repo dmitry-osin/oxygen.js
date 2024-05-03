@@ -16,7 +16,6 @@
       "name": "Admin",
       "email": "admin@localhost",
       "password": "admin",
-      "salt": "fe2bf0f7-e980-4b16-979e-fcd8e985d074",
       "role": "admin"
     }
   }

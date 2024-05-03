@@ -8,12 +8,24 @@ class MainController {
         res.render('about.pug')
     }
 
-    contact(req, res) {
+    contacts(req, res) {
         res.render('contacts.pug')
     }
 
     login(req, res) {
-        res.render('login.pug')
+        if (req.isAuthenticated()) {
+            res.redirect('/admin');
+        } else {
+            res.render('login.pug');
+        }
+    }
+
+    logout(req, res) {
+        if (req.isAuthenticated()) {
+            req.session.destroy()
+        } else {
+            res.redirect('/login');
+        }
     }
 
 }
