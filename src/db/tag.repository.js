@@ -11,6 +11,10 @@ class TagRepository {
         return await this.Tag.find().exec()
     }
 
+    async findAllWithPagination(limit, skip) {
+        return await this.Tag.find().limit(limit).skip(skip).exec()
+    }
+
     async findById(id) {
         return await this.Tag.findById(id).exec()
     }

@@ -9,7 +9,7 @@ const User = mongoose.model('User', {
     token: String,
     refreshToken: String,
     refreshTokenExpiry: Date,
-    createdAt: Date,
+    createdAt: {type: Date, default: Date.now, required: true},
     updatedAt: Date,
     deletedAt: Date
 })
@@ -18,7 +18,7 @@ const Post = mongoose.model('Post', {
     title: {type: String, required: true, unique: true},
     content: String,
     url: {type: String, required: true, unique: true},
-    createdAt: Date,
+    createdAt: {type: Date, default: Date.now, required: true},
     updatedAt: Date,
     deletedAt: Date,
     author: {type: mongoose.Schema.Types.ObjectId, ref: 'User'},
@@ -31,7 +31,7 @@ const Tag = mongoose.model('Tag', {
     name: {type: String, required: true, unique: true},
     description: {type: String, length: 128},
     url: {type: String, required: true, unique: true},
-    createdAt: Date,
+    createdAt: {type: Date, default: Date.now, required: true},
     updatedAt: Date,
     deletedAt: Date,
     posts: [{type: mongoose.Schema.Types.ObjectId, ref: 'Post'}]
@@ -41,7 +41,7 @@ const Category = mongoose.model('Category', {
     name: {type: String, required: true, unique: true},
     description: {type: String, length: 128},
     url: {type: String, required: true, unique: true},
-    createdAt: Date,
+    createdAt: {type: Date, default: Date.now, required: true},
     updatedAt: Date,
     deletedAt: Date,
     posts: [{type: mongoose.Schema.Types.ObjectId, ref: 'Post'}]

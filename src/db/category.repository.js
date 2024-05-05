@@ -11,6 +11,10 @@ class CategoryRepository {
         return await this.Category.find().exec()
     }
 
+    async findAllWithPagination(limit, skip) {
+        return await this.Category.find().limit(limit).skip(skip).exec()
+    }
+
     async findById(id) {
         return await this.Category.findById(id).exec()
     }

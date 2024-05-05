@@ -1,42 +1,62 @@
 mixin categoriesWidget(categories)
-    ul.list-group.list-group-numbered
-        each category in categories
-            li.list-group-item.d-flex.justify-content-between.align-items-start
-                div.ms-2.me-auto
-                        a.nav-link(href="/category/" + category.url)= category.name
-                span.badge.text-bg-primary.rounded-pill= category.posts.length
+    div.container-fluid.mt-3
+        div.card.mb-3.sidebar-widget
+            div.card-header
+                h5.card-title Categories
+            div.card-body
+                ul.list-group.list-group-numbered
+                    each category in categories
+                        li.list-group-item.d-flex.justify-content-between.align-items-start
+                            div.ms-2.me-auto
+                                    a.nav-link(href="/category/" + category.url)= category.name
+                            span.badge.text-bg-primary.rounded-pill= category.posts.length
 
 mixin tagsWidget(tags)
-    ul.list-group.list-group-numbered
-        each tag in tags
-            li.list-group-item.d-flex.justify-content-between.align-items-start
-                div.ms-2.me-auto
-                    a.nav-link(href="/tag/" + tag.url)= tag.name
-                span.badge.text-bg-primary.rounded-pill= tag.posts.length
+    div.container-fluid.mt-3
+        div.card.mb-3.sidebar-widget
+            div.card-header
+                h5.card-title Tags
+            div.card-body
+                ul.list-group.list-group-numbered
+                    each tag in tags
+                        li.list-group-item.d-flex.justify-content-between.align-items-start
+                            div.ms-2.me-auto
+                                a.nav-link(href="/tag/" + tag.url)= tag.name
+                            span.badge.text-bg-primary.rounded-pill= tag.posts.length
 
 
 mixin latestPostsWidget(posts)
-    ul.list-group.list-group-numbered
-        each post in posts
-            li.list-group-item.d-flex.justify-content-between.align-items-start
-                div.ms-2.me-auto
-                    a.nav-link(href="/post/" + post.url)= post.name
+    div.container-fluid.mt-3
+        div.card.mb-3.sidebar-widget
+            div.card-header
+                h5.card-title Latest posts
+            div.card-body
+                ul.list-group.list-group-numbered
+                    each post in posts
+                        li.list-group-item.d-flex.justify-content-between.align-items-start
+                            div.ms-2.me-auto
+                                a.nav-link(href="/post/" + post.url)= post.title
 
 
-mixin shortPostWidget(post, category, tags, user)
+mixin shortPostWidget(post)
     div.card
         div.card-header
             div.row
-                div.col-6= user.name
-                div.col-6.d-flex.justify-content-end= post.timestamp
+                div.col-6= post.author.name
+                div.col-6.d-flex.justify-content-end= post.createdAt
         div.card-body
             h4.card-title.text-center.mb-3
-                a(href='#')= post.title
+                a(href='/post/' + post.url)= post.title
             p.card-text= post.description
-            a.btn.btn-primary(href='#') Read post
+            a.btn.btn-primary(href='/post/' + post.url) Read post
         div.card-footer.text-body-secondary
             div.row
                 div.col-6
-                    a(href='#')= category.title
-                div.col-6.d-flex.justify-content-end Tag1, Tag2, Tag3
+                    div.list-group.list-group-horizontal
+                        each category in post.categories
+                            a.list-group-item(href='/category/' + category.url)= category.name
+                div.col-6.d-flex.justify-content-end
+                    div.list-group.list-group-horizontal
+                        each tag in post.tags
+                            a.list-group-item(href='/tag/' + tag.url)= tag.name
 

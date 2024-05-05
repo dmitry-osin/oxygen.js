@@ -1,0 +1,48 @@
+- var pageTitle = 'Blog'
+include _mixin/_mixins
+
+include _partial/_head
+
+body
+    include _partial/_navbar
+
+    div.content.page
+        div.container-fluid
+            div.row
+                div.col-3.sidebar#sidebar
+                    +latestPostsWidget(posts)
+                    +categoriesWidget(categories)
+                    +tagsWidget(tags)
+                div.col-9.content#content
+                    div.container-fluid.my-3
+                        div.card.content
+                            div.card-header
+                                div.row
+                                    div.col-6
+                                        i.bi.bi-person
+                                            span.mx-2= post.author.name
+                                    div.col-6.d-flex.justify-content-end
+                                        i.bi.bi-calendar-day
+                                            span.mx-2= post.createdAt
+                            div.card-body
+                                h4.card-title.text-center.mb-3
+                                    h3.mb-5.mx-3= post.title
+                                p.card-text.mb-5.mx-3= post.content
+                            div.card-footer.text-body-secondary
+                                div.row
+                                    div.col-6
+                                        div.list-group.list-group-horizontal
+                                            each category in post.categories
+                                                a.list-group-item(href='/category/' + category.url)= category.name
+                                    div.col-6.d-flex.justify-content-end
+                                        div.list-group.list-group-horizontal
+                                            each tag in post.tags
+                                                div.list-group-item
+                                                    i.bi.bi-tag
+                                                        span.mx-1
+                                                            a(href='/tag/' + tag.url)= tag.name
+
+
+    include _partial/_footer
+
+    include _partial/_scripts

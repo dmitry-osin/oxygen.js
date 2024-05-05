@@ -1,7 +1,13 @@
+const {postRepository, tagRepository, categoryRepository} = require('./../db')
+
 class MainController {
 
-    index(req, res) {
-        res.render('index.pug')
+    async index(req, res) {
+        const posts = await postRepository.findAll()
+        const tags = await tagRepository.findAll()
+        const categories = await categoryRepository.findAll()
+
+        res.render('index.pug', {posts, tags, categories})
     }
 
     about(req, res) {
@@ -26,6 +32,15 @@ class MainController {
         } else {
             res.redirect('/login');
         }
+    }
+
+    async post(req, res) {
+        const posts = await postRepository.findAllWithPagination(5, 0)
+        const tags = await tagRepository.findAllWithPagination(5, 0)
+        const categories = await categoryRepository.findAllWithPagination(5, 0)
+
+        const post = await postRepository.findByUrl(req.params.postId)
+        res.render('post.pug', {post, posts, tags, categories})
     }
 
 }
