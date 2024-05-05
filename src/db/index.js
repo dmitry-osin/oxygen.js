@@ -35,14 +35,14 @@ async function initializeDatabase() {
     const post = await postRepository.create({
         title: 'Основы JavaScript',
         content: 'Основы JavaScript',
-        url: 'javascript',
+        url: 'osnovi-javascript',
         author: user._id,
         description: 'Основы JavaScript'
     })
 
-    const category = await categoryRepository.create({name: 'JavaScript', description: 'Основы JavaScript', url: 'javascript', posts: [post._id]})
+    const category = await categoryRepository.create({name: 'Разработка', description: 'Все, что связано с разработкой', url: 'development', posts: [post._id]})
 
-    const tag = await tagRepository.create({name: 'C#', description: 'Основы C#', url: 'c#', posts: [post._id]})
+    const tag = await tagRepository.create({name: 'JavaScript', description: 'Все связанное с JavaScript', url: 'javascript', posts: [post._id]})
 
     await postRepository.update(post._id, {$set: {categories: [category._id], tags: [tag._id]}})
 }

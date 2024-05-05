@@ -14,6 +14,8 @@ router.get('/contacts', mainController.contacts)
 router.get('/login', mainController.login)
 router.get('/logout', mainController.logout)
 
+router.get('/post/:postId', mainController.post)
+
 router.get('/admin/', adminController.index)
 
 router.post('/login/password', passport.authenticate('local', {

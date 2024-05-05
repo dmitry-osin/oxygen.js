@@ -1,4 +1,5 @@
 - var pageTitle = 'Blog'
+include _mixin/_mixins
 
 include _partial/_head
 
@@ -9,10 +10,15 @@ body
         div.container-fluid
             div.row
                 div.col-3.sidebar#sidebar
-                    include _partial/_sidebar
+                    div.container-fluid
+                            +latestPostsWidget(posts)
+                            +categoriesWidget(categories)
+                            +tagsWidget(tags)
                 div.col-9.content#content
                     div.container-fluid.my-3
-                        include _partial/_post
+                        each post in posts
+                            +shortPostWidget(post)
+
 
     include _partial/_footer
 
