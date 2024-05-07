@@ -19,6 +19,10 @@ class CategoryRepository {
         return await this.Category.findById(id).exec()
     }
 
+    async findByUrl(url) {
+        return await this.Category.findOne({url}).exec()
+    }
+
     async update(id, category) {
         return await this.Category.findByIdAndUpdate(id, category).exec()
     }

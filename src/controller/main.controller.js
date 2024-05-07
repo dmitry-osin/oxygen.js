@@ -7,7 +7,11 @@ class MainController {
         const tags = await tagRepository.findAll()
         const categories = await categoryRepository.findAll()
 
-        res.render('index.pug', {posts, tags, categories})
+        const pages = Array.from({length: posts.length}).map((_, index) => {
+            return {url: '/page/' + (index + 1), label: index + 1}
+        })
+
+        res.render('index.pug', {posts, tags, categories, pages})
     }
 
     about(req, res) {
@@ -41,6 +45,38 @@ class MainController {
 
         const post = await postRepository.findByUrl(req.params.postId)
         res.render('post.pug', {post, posts, tags, categories})
+    }
+
+    async postsByTag(req, res) {
+        const posts = await postRepository.findAllWithPagination(5, 0)
+        const tags = await tagRepository.findAllWithPagination(5, 0)
+        const categories = await categoryRepository.findAllWithPagination(5, 0)
+
+        const tag = await tagRepository.findByUrl(req.params.tagId)
+        const targetPosts = await postRepository.findByTag(tag._id)
+
+        res.render('search.pug', {targetPosts, posts, tags, categories, pageHeader: `Search results by tag: "${tag.name}"`})
+    }
+
+    async postsByCategory(req, res) {
+        const posts = await postRepository.findAllWithPagination(5, 0)
+        const tags = await tagRepository.findAllWithPagination(5, 0)
+        const categories = await categoryRepository.findAllWithPagination(5, 0)
+
+        const category = await categoryRepository.findByUrl(req.params.categoryId)
+        const targetPosts = await postRepository.findByCategory(category._id)
+
+        res.render('search.pug', {targetPosts, posts, tags, categories, pageHeader: `Search results by category: "${category.name}"`})
+    }
+
+    async search(req, res) {
+        const posts = await postRepository.findAllWithPagination(5, 0)
+        const tags = await tagRepository.findAllWithPagination(5, 0)
+        const categories = await categoryRepository.findAllWithPagination(5, 0)
+
+        const targetPosts = await postRepository.search(req.body.query)
+
+        res.render('search.pug', {targetPosts, posts, tags, categories, pageHeader: `Search results by query: "${req.body.query}"`})
     }
 
 }
