@@ -15,12 +15,9 @@ body
                     +tagsWidget(tags)
                 div.col-9.content#content
                     div.container-fluid.my-3
-                        each post in posts
+                        h3.mx-auto= pageHeader
+                        each post in targetPosts
                             +shortPostWidget(post)
-                    div.container-fluid.my-3
-                        +pagination(pages)
-
-
 
 
     include _partial/_footer

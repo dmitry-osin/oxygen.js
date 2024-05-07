@@ -19,6 +19,10 @@ class TagRepository {
         return await this.Tag.findById(id).exec()
     }
 
+    async findByUrl(url) {
+        return await this.Tag.findOne({url}).exec()
+    }
+
     async update(id, tag) {
         return await this.Tag.findByIdAndUpdate(id, tag).exec()
     }

@@ -42,8 +42,12 @@ mixin shortPostWidget(post)
     div.card
         div.card-header
             div.row
-                div.col-6= post.author.name
-                div.col-6.d-flex.justify-content-end= post.createdAt
+                div.col-6
+                    i.bi.bi-person
+                        span.mx-2= post.author.name
+                div.col-6.d-flex.justify-content-end
+                    i.bi.bi-calendar-day
+                        span.mx-2= post.createdAt
         div.card-body
             h4.card-title.text-center.mb-3
                 a(href='/post/' + post.url)= post.title
@@ -58,5 +62,20 @@ mixin shortPostWidget(post)
                 div.col-6.d-flex.justify-content-end
                     div.list-group.list-group-horizontal
                         each tag in post.tags
-                            a.list-group-item(href='/tag/' + tag.url)= tag.name
+                            div.list-group-item
+                                i.bi.bi.bi-tag
+                                    span.mx-1
+                                        a(href='/tag/' + tag.url)= tag.name
+
+
+mixin pagination(pages)
+    nav
+        ul.pagination
+            li.page-item
+                a.page-link(href="#") Previous
+            each page in pages
+                li.page-item
+                    a.page-link(href="" + page.url)= page.label
+            li.page-item
+                a.page-link(href="#") Next
 

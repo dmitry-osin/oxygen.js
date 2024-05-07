@@ -9,12 +9,16 @@ const bcrypt = require('bcryptjs')
 const router = express.Router()
 
 router.get('/', mainController.index)
+router.get('/page/:page?', mainController.index)
 router.get('/about', mainController.about)
 router.get('/contacts', mainController.contacts)
 router.get('/login', mainController.login)
 router.get('/logout', mainController.logout)
 
 router.get('/post/:postId', mainController.post)
+router.get('/tag/:tagId', mainController.postsByTag)
+router.get('/category/:categoryId', mainController.postsByCategory)
+router.post('/search', mainController.search)
 
 router.get('/admin/', adminController.index)
 
