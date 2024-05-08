@@ -13,3 +13,7 @@
 .sidebar-widget {
     min-height: 20rem;
 }
+
+#editor {
+    min-height: 40rem;
+}

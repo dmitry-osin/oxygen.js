@@ -1,0 +1,45 @@
+- var pageTitle = 'About us'
+
+include ../../_partial/_head
+
+body
+    div.container-fluid.mt-5.mb-5
+        div.row
+            div.col-2
+            div.col-8
+                form(method='POST' action='/admin/post/new')
+                    div.input-group.mb-3
+                        span.input-group-text Title
+                        input#title.form-control(type='text' name='title' placeholder='Type post title here...' required=true aria-label='Title')
+                    div.input-group.mb-3
+                        span.input-group-text Url
+                        input#url.form-control(type='text' name='url' placeholder='Type post url here...' required=true aria-label='Url')
+                    div.input-group.mb-3
+                        span.input-group-text Description
+                        textarea.form-control( name='description' placeholder='Type post description here...' required=true aria-label='Description')
+                    div.input-group.mb-3
+                        span.input-group-text Content
+                        div#editor.post-editor.form-control
+                    div.row
+                        div.col-6
+                            div.input-group
+                                span.input-group-text Categories
+                                input.form-control(type='text' name='categories' placeholder='Type post categories here...' required=true aria-label='Categories')
+                        div.col-6
+                            div.input-group.d-flex.justify-content-end
+                                span.input-group-text Tags
+                                input.form-control(type='text' name='tags' placeholder='Type post tags here...' required=true aria-label='Tags')
+                    div.row.mt-3
+                        div.col-6
+                            button.btn.btn-primary(type='submit' formaction='/admin/post/new/draft') Save post as draft
+                        div.col-6.d-flex.justify-content-end
+                            button.btn.btn-danger(type='submit' formaction='/admin/post/new/publish') Publish post
+            div.col-2
+
+
+
+
+    include ../../_partial/_scripts
+    script(src="https://cdn.ckeditor.com/ckeditor5/41.3.1/inline/ckeditor.js")
+    script(src='/script/ckeditor.js')
+    script(src='/script/translit.js')

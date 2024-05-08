@@ -32,19 +32,28 @@ async function initializeDatabase() {
         refreshTokenExpiry: new Date()
     })
 
-    const post = await postRepository.create({
+    const category = await categoryRepository.create({
+        name: 'Разработка',
+        description: 'Все, что связано с разработкой',
+        url: 'development'
+    })
+
+    const tag = await tagRepository.create({
+        name: 'JavaScript',
+        description: 'Все связанное с JavaScript',
+        url: 'javascript'
+    })
+
+    await postRepository.create({
         title: 'Основы JavaScript',
         content: 'Основы JavaScript',
         url: 'osnovi-javascript',
         author: user._id,
-        description: 'Основы JavaScript'
+        isPublished: true,
+        description: 'Основы JavaScript',
+        categories: [category._id],
+        tags: [tag._id]
     })
-
-    const category = await categoryRepository.create({name: 'Разработка', description: 'Все, что связано с разработкой', url: 'development', posts: [post._id]})
-
-    const tag = await tagRepository.create({name: 'JavaScript', description: 'Все связанное с JavaScript', url: 'javascript', posts: [post._id]})
-
-    await postRepository.update(post._id, {$set: {categories: [category._id], tags: [tag._id]}})
 }
 
 module.exports = {
