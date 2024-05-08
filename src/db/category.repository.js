@@ -7,6 +7,17 @@ class CategoryRepository {
         return await this.Category.create(category)
     }
 
+    async findOrCreate(category) {
+        const existingCategory = await this.findByUrl(category.url)
+        if (existingCategory) {
+            return existingCategory
+        }
+        return await this.Category.findOneAndUpdate({url: category.url, name: category.name}, category, {
+            upsert: true,
+            new: true
+        }).exec()
+    }
+
     async findAll() {
         return await this.Category.find().exec()
     }

@@ -21,6 +21,9 @@ router.get('/category/:categoryId', mainController.postsByCategory)
 router.post('/search', mainController.search)
 
 router.get('/admin/', adminController.index)
+router.get('/admin/post/new/', adminController.post)
+router.post('/admin/post/new/draft', adminController.draftPost)
+router.post('/admin/post/new/publish', adminController.publishPost)
 
 router.post('/login/password', passport.authenticate('local', {
     successRedirect: '/admin',

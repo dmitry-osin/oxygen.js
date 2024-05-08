@@ -7,6 +7,15 @@ class TagRepository {
         return await this.Tag.create(tag)
     }
 
+    async findOrCreate(tag) {
+        const existingTag = await this.findByUrl(tag.url)
+        if (existingTag) {
+            return existingTag
+        }
+        return await this.Tag.findOneAndUpdate({url: tag.url, name: tag.name}, tag, {upsert: true, new: true})
+            .exec()
+    }
+
     async findAll() {
         return await this.Tag.find().exec()
     }

@@ -22,6 +22,7 @@ const Post = mongoose.model('Post', {
     updatedAt: Date,
     deletedAt: Date,
     author: {type: mongoose.Schema.Types.ObjectId, ref: 'User'},
+    isPublished: {type: Boolean, default: false},
     description: String,
     tags: [{type: mongoose.Schema.Types.ObjectId, ref: 'Tag'}],
     categories: [{type: mongoose.Schema.Types.ObjectId, ref: 'Category'}]
@@ -33,8 +34,7 @@ const Tag = mongoose.model('Tag', {
     url: {type: String, required: true, unique: true},
     createdAt: {type: Date, default: Date.now, required: true},
     updatedAt: Date,
-    deletedAt: Date,
-    posts: [{type: mongoose.Schema.Types.ObjectId, ref: 'Post'}]
+    deletedAt: Date
 })
 
 const Category = mongoose.model('Category', {
@@ -43,8 +43,7 @@ const Category = mongoose.model('Category', {
     url: {type: String, required: true, unique: true},
     createdAt: {type: Date, default: Date.now, required: true},
     updatedAt: Date,
-    deletedAt: Date,
-    posts: [{type: mongoose.Schema.Types.ObjectId, ref: 'Post'}]
+    deletedAt: Date
 })
 
 module.exports = {
