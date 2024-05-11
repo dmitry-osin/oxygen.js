@@ -11,8 +11,8 @@ body
             div.row
                 div.col-3.sidebar#sidebar
                     +latestPostsWidget(posts)
-                    +categoriesWidget(categories)
-                    +tagsWidget(tags)
+                    +categoriesWidget(categories, posts.length)
+                    +tagsWidget(tags, posts.length)
                 div.col-9.content#content
                     div.container-fluid.my-3
                         each post in posts

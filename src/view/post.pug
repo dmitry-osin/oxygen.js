@@ -19,8 +19,10 @@ body
                             div.card-header
                                 div.row
                                     div.col-6
-                                        i.bi.bi-person
-                                            span.mx-2= post.author.name
+                                        div.list-group-item
+                                            i.bi.bi-person
+                                                span.mx-1
+                                                    a(href='/author/' + post.author.name)= post.author.name
                                     div.col-6.d-flex.justify-content-end
                                         i.bi.bi-calendar-day
                                             span.mx-2= post.createdAt
@@ -33,7 +35,10 @@ body
                                     div.col-6
                                         div.list-group.list-group-horizontal
                                             each category in post.categories
-                                                a.list-group-item(href='/category/' + category.url)= category.name
+                                                div.list-group-item
+                                                    i.bi.bi-tag
+                                                        span.mx-1
+                                                            a(href='/category/' + category.url)= category.name
                                     div.col-6.d-flex.justify-content-end
                                         div.list-group.list-group-horizontal
                                             each tag in post.tags
