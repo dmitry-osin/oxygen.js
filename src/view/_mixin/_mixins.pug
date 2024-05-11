@@ -1,4 +1,4 @@
-mixin categoriesWidget(categories)
+mixin categoriesWidget(categories, postsCount)
     div.container-fluid.mt-3
         div.card.mb-3.sidebar-widget
             div.card-header
@@ -9,9 +9,9 @@ mixin categoriesWidget(categories)
                         li.list-group-item.d-flex.justify-content-between.align-items-start
                             div.ms-2.me-auto
                                     a.nav-link(href="/category/" + category.url)= category.name
-                            span.badge.text-bg-primary.rounded-pill= category.posts.length
+                            span.badge.text-bg-primary.rounded-pill= postsCount
 
-mixin tagsWidget(tags)
+mixin tagsWidget(tags, postsCount)
     div.container-fluid.mt-3
         div.card.mb-3.sidebar-widget
             div.card-header
@@ -22,7 +22,7 @@ mixin tagsWidget(tags)
                         li.list-group-item.d-flex.justify-content-between.align-items-start
                             div.ms-2.me-auto
                                 a.nav-link(href="/tag/" + tag.url)= tag.name
-                            span.badge.text-bg-primary.rounded-pill= tag.posts.length
+                            span.badge.text-bg-primary.rounded-pill= postsCount
 
 
 mixin latestPostsWidget(posts)
@@ -43,8 +43,10 @@ mixin shortPostWidget(post)
         div.card-header
             div.row
                 div.col-6
-                    i.bi.bi-person
-                        span.mx-2= post.author.name
+                    div.list-group-item
+                        i.bi.bi-person
+                            span.mx-1
+                                a(href='/author/' + post.author.name)= post.author.name
                 div.col-6.d-flex.justify-content-end
                     i.bi.bi-calendar-day
                         span.mx-2= post.createdAt
@@ -58,7 +60,10 @@ mixin shortPostWidget(post)
                 div.col-6
                     div.list-group.list-group-horizontal
                         each category in post.categories
-                            a.list-group-item(href='/category/' + category.url)= category.name
+                            div.list-group-item
+                                i
+                                    span.mx-1
+                                        a(href='/category/' + category.url)= category.name
                 div.col-6.d-flex.justify-content-end
                     div.list-group.list-group-horizontal
                         each tag in post.tags
